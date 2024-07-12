@@ -29,7 +29,7 @@ function App() {
       alert("Please select a file first");
       return;
     }
-    console.log(file);
+    //console.log(file);
     const formData = new FormData();
     formData.append("file", file);
 
@@ -40,9 +40,6 @@ function App() {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: (progressEvent) => {
-            console.log(progressEvent.loaded, progressEvent.total);
           },
         }
       );
@@ -64,7 +61,7 @@ function App() {
 
   const handleDownload = async () => {
     const time = Math.floor(2.18 * assets - 4.727);
-    console.log(time);
+    //console.log(time);
 
     setProcess(true);
     setLoading(true);
@@ -79,8 +76,8 @@ function App() {
       const sizeInBytes = new Blob([jsonString]).size;
       const sizeInKB = (sizeInBytes / 1024).toFixed(2);
 
-      console.log(`Size of JSON response data: ${sizeInKB} KB`);
-      console.log('jsonresponse',jsonResponse);
+      //console.log(`Size of JSON response data: ${sizeInKB} KB`);
+      //console.log('jsonresponse',jsonResponse);
 
       const blob = new Blob([JSON.stringify(jsonResponse)], {
         type: "application/json",
@@ -89,14 +86,14 @@ function App() {
 
       setDownloadLink({ url, filename:"newfile.json" });
 
-      console.log('executing handledownload');
+      //console.log('executing handledownload');
 
       setLoading(false);
       setProcessedsize(parseInt(sizeInKB));
       setComplete(true);
       //setProcessProgress(100);
     } catch (error) {
-      console.error("Error uploading file:", error);
+      //console.error("Error uploading file:", error);
       alert("Error uploading file");
       setLoading(false);
     }
@@ -107,7 +104,7 @@ function App() {
     const response = await axios.delete(
       `http://localhost:3000/file/delete/${uploadfilename}`
     );
-    console.log("File deleted:", response.data);
+    //console.log("File deleted:", response.data);
 
     setFileName("");
     setUploaded(false);
@@ -135,7 +132,7 @@ function App() {
       event.preventDefault();
       const file = event.dataTransfer.files[0];
       setSelectedFile(file);
-      console.log("rty", file);
+      //console.log("rty", file);
       //console.log(selectedFile);
       handleUpload(file);
     } else {
@@ -151,7 +148,7 @@ function App() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
-    console.log(file);
+    //console.log(file);
     handleUpload(file);
   };
 
@@ -260,7 +257,7 @@ function App() {
       <div
         style={{
           minHeight: "clamp(200px, 30vh, 400px)",
-          minWidth: " clamp(300px, 50vw, 600px)",
+          minWidth: "clamp(300px, 50vw, 600px)",
         }}
       >
         {uploaded && (
@@ -394,7 +391,7 @@ function App() {
       <div
         style={{
           minHeight: "clamp(200px, 30vh, 400px)",
-          minWidth: " clamp(300px, 50vw, 600px)",
+          minWidth: "clamp(300px, 50vw, 600px)",
         }}
       >
         {process && (
